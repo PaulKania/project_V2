@@ -1,0 +1,27 @@
+{% extends "coin_register/base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<form action="" method="post" autocomplete="off">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-8">
+            {{form.coin_title|as_crispy_field}}
+        </div>
+        <div class="col-md-4">
+            {{form.coin_cat|as_crispy_field}}
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            {{form.coin_desc|as_crispy_field}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <button type="submit" class="btn btn-success btn-block btn-lg">&#128190; Submit &#128190;</button>
+        </div>
+</form>
+{% endblock content %}

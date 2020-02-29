@@ -1,0 +1,45 @@
+{% extends "coin_register/base.html" %}
+
+{% block content %}
+
+<a href="{% url 'coin_insert' %}" class="btn">
+    <button type="submit" class="btn btn-edit btn-success">&#10133; Create New</button> 
+</a>
+<br> </br>
+<table class="table table-borderless">
+    <thead class="border-bottom font-weight-bold">
+        <tr>
+            <td style="font-size: 1.15rem;"> Name</td>
+            <td style="font-size: 1.15rem;"> Description</td> 
+            <td style="font-size: 1.15rem;"> Category</td>              
+        </tr>
+    </thead>
+    <tbody>
+        {% for coin in coin_list %}
+            <tr>
+                <td  style="font-weight: bold;">{{coin.coin_title}}</td>
+                <td>{{coin.coin_desc}}</td>
+                <td  style="text-decoration-line:none; margin-left: 15px;">
+                    {{coin.coin_cat}}
+                </td>
+                <td>
+                    <a href="{% url 'coin_update' coin.id %}" class="btn text-secondary px-0">
+                        <button style="padding: 12px; margin-right: -10px;" class="btn btn-edit">&#9999;</button>
+                    </a>
+                </td>
+               
+                <td>
+                    <form  action="{% url 'coin_delete' coin.id %}" method="delete" class="d-inline">
+                        {% csrf_token %}
+                        <button style="padding: 12px; margin-top: 7px; margin-left: -10px;" class="btn btn-danger">&#128465;</button>
+                    </form>
+                </td>
+                <!-- <td>{{coin.coin_category_coin}}</td> -->
+            </tr>
+        {% endfor %}
+    </tbody>
+   
+</table>
+
+
+{% endblock content %}
